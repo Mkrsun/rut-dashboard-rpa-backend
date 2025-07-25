@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { ProcessRutController } from './infrastructure/controller/processRut.controller';
-import { ProcessRutUseCase } from './application/processRut.usecase';
-import { ProcessRutService } from './infrastructure/service/processRut.service';
-import { ProcessRutSchema } from './infrastructure/processRut.schema';
-import { AuthMiddleware } from '../../shared/middleware/auth.middleware';
+import { ProcessRutController } from './controller/processRut.controller';
+import { ProcessRutUseCase } from '../application/processRut.usecase';
+import { ProcessRutService } from './service/processRut.service';
+import { ProcessRutSchema } from './processRut.schema';
+import { AuthMiddleware } from '../../../shared/middleware/auth.middleware';
 
 export class ProcessRutRoutes {
   private router: Router;

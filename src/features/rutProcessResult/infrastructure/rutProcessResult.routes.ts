@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { RutProcessResultController } from './rutProcessResult.controller';
+import { RutProcessResultController } from './controller/rutProcessResult.controller';
 import { RutProcessResultUseCase } from '../application/rutProcessResult.usecase';
 import { RutProcessResultRepositoryImpl } from './repository/rutProcessResult.repository.impl';
 import { AuthMiddleware } from '../../../shared/middleware/auth.middleware';

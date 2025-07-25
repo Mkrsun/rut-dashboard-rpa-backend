@@ -74,13 +74,13 @@ export class App {
     this.app.use('/api/v1/rut-results', this.rutProcessResultRoutes.getRouter());
     this.app.use('/api/v1/process-rut', this.processRutRoutes.getRouter());
     
-    // Test routes (temporal para testing)
+    // Test routes (temporal para testing) - COMENTADO TEMPORALMENTE
     this.app.use('/api/v1/test', this.testRoutes.getRouter());
 
     // 404 handler for undefined routes
-    this.app.use('*', (req: Request, res: Response) => {
-      ResponseUtil.notFound(res, `Route ${req.originalUrl} not found`);
-    });
+    // this.app.use('*', (req: Request, res: Response) => {
+    //   ResponseUtil.notFound(res, `Route ${req.originalUrl} not found`);
+    // });
   }
 
   private initializeErrorHandling(): void {

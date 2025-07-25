@@ -1,9 +1,9 @@
 import { Response } from 'express';
 import { RutProcessResultControllerInterface } from './rutProcessResult.controller.interface';
-import { RutProcessResultUseCase } from '../application/rutProcessResult.usecase';
-import { ResponseUtil } from '../../../shared/utils/response.util';
-import { AuthenticatedRequest } from '../../../shared/middleware/auth.middleware';
-import { CreateRutProcessResultRequest, UpdateRutProcessResultRequest } from '../domain/rutProcessResult.entity';
+import { RutProcessResultUseCase } from '../../application/rutProcessResult.usecase';
+import { ResponseUtil } from '../../../../shared/utils/response.util';
+import { AuthenticatedRequest } from '../../../../shared/middleware/auth.middleware';
+import { CreateRutProcessResultRequest, UpdateRutProcessResultRequest } from '../../domain/rutProcessResult.entity';
 
 export class RutProcessResultController implements RutProcessResultControllerInterface {
   constructor(private readonly rutProcessResultUseCase: RutProcessResultUseCase) {}

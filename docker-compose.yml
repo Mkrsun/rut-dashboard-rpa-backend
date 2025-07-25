@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  rut-proc-mongodb:
+    image: mongo:7.0
+    container_name: rut-proc-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: rut-dashboard
+    ports:
+      - "27018:27017"
+    volumes:
+      - rut_proc_mongodb_data:/data/db
+      - rut_proc_mongodb_config:/data/configdb
+    networks:
+      - rut-proc-network
+
+networks:
+  rut-proc-network:
+    driver: bridge
+
+volumes:
+  rut_proc_mongodb_data:
+    driver: local
+  rut_proc_mongodb_config:
+    driver: local
