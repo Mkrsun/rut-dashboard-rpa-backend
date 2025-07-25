@@ -8,14 +8,12 @@ const rutProcessResultSchema = new Schema<RutProcessResultDocument>(
     rut: {
       type: String,
       required: [true, 'RUT is required'],
-      trim: true,
-      index: true
+      trim: true
     },
     createdBy: {
       type: String,
       required: [true, 'CreatedBy (Admin ID) is required'],
-      ref: 'Admin',
-      index: true
+      ref: 'Admin'
     },
     data: {
       type: Schema.Types.Mixed,

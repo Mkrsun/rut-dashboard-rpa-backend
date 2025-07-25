@@ -34,10 +34,46 @@ export class App {
     
     // CORS configuration
     this.app.use(cors({
-      origin: EnvironmentConfig.CORS_ORIGIN,
+      origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        // In development, allow common development ports and ngrok
+        if (EnvironmentConfig.isDevelopment) {
+          const allowedOrigins = [
+            'http://localhost:3000',
+            'http://localhost:8080',
+            'http://localhost:8081',
+            'http://localhost:5173', // Vite default
+            'http://localhost:3001'  // Next.js alternative
+          ];
+          
+          // Allow localhost origins
+          if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+          }
+          
+          // Allow ngrok domains (both http and https)
+          if (origin.includes('.ngrok-free.app') || origin.includes('.ngrok.io')) {
+            return callback(null, true);
+          }
+          
+          // Allow any localhost with different ports in development
+          if (origin.startsWith('http://localhost:') || origin.startsWith('https://localhost:')) {
+            return callback(null, true);
+          }
+        }
+        
+        // In production, use the configured CORS_ORIGIN
+        if (origin === EnvironmentConfig.CORS_ORIGIN) {
+          return callback(null, true);
+        }
+        
+        return callback(new Error('Not allowed by CORS'));
+      },
       credentials: true,
       methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization']
+      allowedHeaders: ['Content-Type', 'Authorization', 'ngrok-skip-browser-warning']
     }));
 
     // Logging middleware

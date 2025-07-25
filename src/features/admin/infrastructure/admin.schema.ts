@@ -53,8 +53,7 @@ const adminSchema = new Schema<AdminDocument>(
   }
 );
 
-// Index for better query performance
-adminSchema.index({ email: 1 });
+// Index for better query performance (email index is created automatically by unique: true)
 adminSchema.index({ isActive: 1 });
 
 export const AdminModel = model<AdminDocument>('Admin', adminSchema);
